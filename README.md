@@ -9,9 +9,3 @@ This application is being developed in Android Studio using the Java programming
 Icons/Images used are provided by 
 - Google (https://material.io/tools/icons) and is available under the Apache license version 2.0.
 - Various talented Artists. Available on https://game-icons.net. Available under the terms of the Creative Commons 3.0 BY license (https://creativecommons.org/licenses/by/3.0/)
-
-To do list:
-- Use Room to store user's favorite rolls in between application uses
-- Add the settings fragment where users can change theme of the app
-- Implement the ability to select favorite rolls
-- Fix bugs involving bottom navigation bar use
