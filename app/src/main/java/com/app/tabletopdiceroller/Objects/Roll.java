@@ -1,14 +1,29 @@
 package com.app.tabletopdiceroller.Objects;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 /**
  * This Object is representative of a dice roll.
  * A dice roll can be composed of several dice but the dice must have the same number of sides
  */
+@Entity(tableName = "favorites")
 public class Roll {
 
+    // Creates a primary key 'roll_ID'
+    @PrimaryKey(autoGenerate = true)
+    private int roll_ID;
+
+    @ColumnInfo(name = "number of dice")
     private int numberOfDice;
+
+    @ColumnInfo(name = "number of sides")
     private int numberOfSides;
+
     private String displayString;
+
+    @ColumnInfo(name = "name")
     private String rollName;
 
     /**
@@ -21,6 +36,14 @@ public class Roll {
         this.numberOfSides = numberOfSides;
         this.rollName = rollName;
         displayString = "d" + numberOfSides + "x" + numberOfDice;
+    }
+
+    public int getRoll_ID() {
+        return roll_ID;
+    }
+
+    public void setRoll_ID(int roll_ID) {
+        this.roll_ID = roll_ID;
     }
 
     /**
