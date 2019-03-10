@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_custom"
+        android:icon="@drawable/ic_custom"
+        android:title="Custom Roll" />
+
+    <item
+        android:id="@+id/nav_preset"
+        android:icon="@drawable/ic_preset"
+        android:title="Favorite Rolls" />
+
+    <item
+        android:id="@+id/nav_history"
+        android:icon="@drawable/ic_history"
+        android:title="History" />
+
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="Settings" />
+
+</menu>
