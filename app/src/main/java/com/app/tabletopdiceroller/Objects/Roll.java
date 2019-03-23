@@ -21,6 +21,7 @@ public class Roll {
     @ColumnInfo(name = "number of sides")
     private int numberOfSides;
 
+    @ColumnInfo(name = "display string")
     private String displayString;
 
     @ColumnInfo(name = "name")
@@ -45,6 +46,8 @@ public class Roll {
     public void setRoll_ID(int roll_ID) {
         this.roll_ID = roll_ID;
     }
+
+    public void setDisplayString(String displayString) {this.displayString = displayString; }
 
     /**
      * Returns the number of dice in this roll
@@ -77,4 +80,6 @@ public class Roll {
     public String getRollName() {
         return rollName;
     }
+
+
 }

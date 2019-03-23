@@ -1,0 +1,57 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "f6064a38ecfb08c145719f9a59e24b53",
+    "entities": [
+      {
+        "tableName": "favorites",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`roll_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `number of dice` INTEGER NOT NULL, `number of sides` INTEGER NOT NULL, `display string` TEXT, `name` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "roll_ID",
+            "columnName": "roll_ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numberOfDice",
+            "columnName": "number of dice",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numberOfSides",
+            "columnName": "number of sides",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "displayString",
+            "columnName": "display string",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rollName",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "roll_ID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"f6064a38ecfb08c145719f9a59e24b53\")"
+    ]
+  }
+}

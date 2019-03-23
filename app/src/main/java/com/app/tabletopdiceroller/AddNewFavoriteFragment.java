@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.app.tabletopdiceroller.Objects.Roll;
+import com.app.tabletopdiceroller.room.RollRepository;
+
 /**
  * This fragment is the screen displayed when creating a new favorite roll and adding it to the preset roll list
  */
@@ -51,6 +54,7 @@ public class AddNewFavoriteFragment extends Fragment implements View.OnClickList
         rollNameText = view.findViewById(R.id.rollNameText);
         numSides.setText(sides);
         numDice.setText(dice);
+
         return view;
     }
 
@@ -71,6 +75,8 @@ public class AddNewFavoriteFragment extends Fragment implements View.OnClickList
                     sidesInt = Integer.parseInt(sides);
                     diceInt = Integer.parseInt(dice);
                     String rollName = rollNameText.getText().toString();
+                    Roll roll = new Roll(diceInt, sidesInt, rollName);
+                    ((MainActivity)getActivity()).insertRollToDatabase(roll);
                     ((MainActivity)getActivity()).confirmNewRoll(sidesInt, diceInt, rollName);
                 } catch (Exception e) {
                     // Catches exception with user input

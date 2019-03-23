@@ -15,14 +15,15 @@ import android.widget.LinearLayout;
 
 import com.app.tabletopdiceroller.Adapters.RollRecyclerAdapter;
 import com.app.tabletopdiceroller.Objects.Roll;
+import com.app.tabletopdiceroller.room.RollRepository;
 import com.app.tabletopdiceroller.util.VerticalSpacingItemDecorator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PresetRollFragment extends Fragment implements RollRecyclerAdapter.OnRollListener {
 
     private static PresetRollFragment fragmentInstance = null;
-
 
     public static PresetRollFragment getFragment() {
         if (fragmentInstance == null) {
@@ -65,6 +66,21 @@ public class PresetRollFragment extends Fragment implements RollRecyclerAdapter.
         recyclerView.addItemDecoration(itemDecorator);
         rollRecyclerAdapter = new RollRecyclerAdapter(rolls, this);
         recyclerView.setAdapter(rollRecyclerAdapter);
+    }
+
+    public void retrieveRolls(List<Roll> rolls) {
+//        if(rolls.size() > 0) {
+//            rolls.clear();
+//        }
+//        if (rolls != null) {
+//            this.rolls.addAll(rolls);
+//        }
+//        for (Roll r : rolls) {
+//            rolls.add(0, r);
+//            rollRecyclerAdapter.notifyDataSetChanged();
+//        }
+        this.rolls.addAll(rolls);
+        rollRecyclerAdapter.notifyDataSetChanged();
     }
 
     /**

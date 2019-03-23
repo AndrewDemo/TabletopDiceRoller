@@ -14,11 +14,13 @@ import java.util.List;
 @Dao
 public interface RollDAO {
 
-    //Method for inserting rolls
     @Insert
     long[] insertRolls(Roll[] rolls);
 
-    //Method for querying rolls
+    /**
+     * Returns all roll objects in the database
+     * @return list of roll objects in the database
+     */
     @Query("SELECT * FROM favorites")
     LiveData<List<Roll>> getRolls();
 

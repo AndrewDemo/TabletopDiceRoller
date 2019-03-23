@@ -1,6 +1,8 @@
 package com.app.tabletopdiceroller;
 
+import android.arch.lifecycle.Observer;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -11,14 +13,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.app.tabletopdiceroller.Adapters.RollRecyclerAdapter;
+import com.app.tabletopdiceroller.Objects.Roll;
+import com.app.tabletopdiceroller.room.RollRepository;
 import com.app.tabletopdiceroller.util.ActivatedPresetRollFragment;
 
+import java.util.List;
 import java.util.Random;
 
 /**
  * This is the main activity for the TableTopDiceRoller
  */
 public class MainActivity extends AppCompatActivity {
+
+    private RollRepository rollRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +41,24 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, createFragment).commit();
         CustomRollFragment startFragment = CustomRollFragment.getFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, startFragment).commit();
+
+        // instantiates repository
+        rollRepository = new RollRepository(this);
+        retrieveRolls();
+
+    }
+
+    /**
+     * Calls to the preset rolls fragment to update it using the database
+     */
+    private void retrieveRolls() {
+        rollRepository.retrieveRollTask().observe(this, new Observer<List<Roll>>() {
+            @Override
+            public void onChanged(@Nullable List<Roll> rolls) {
+                PresetRollFragment preRollFrag = PresetRollFragment.getFragment();
+                preRollFrag.retrieveRolls(rolls);
+            }
+        });
     }
 
     /**
@@ -116,5 +142,13 @@ public class MainActivity extends AppCompatActivity {
         PresetRollFragment instance = PresetRollFragment.getFragment();
         instance.createNewRoll(sides, dice, rollName);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, instance).commit();
+    }
+
+    /**
+     * Inserts a new roll into the repository
+     * @param roll
+     */
+    public void insertRollToDatabase(Roll roll) {
+        rollRepository.insertRollTask(roll);
     }
 }
