@@ -8,57 +8,39 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-
-import com.app.tabletopdiceroller.Adapters.RollRecyclerAdapter;
 import com.app.tabletopdiceroller.Objects.Roll;
 import com.app.tabletopdiceroller.room.RollRepository;
-import com.app.tabletopdiceroller.util.ActivatedPresetRollFragment;
-
 import java.util.List;
-import java.util.Random;
 
 /**
- * This is the main activity for the TableTopDiceRoller
+ * This is the main activity for the TableTopDiceRoller application
  */
 public class MainActivity extends AppCompatActivity {
 
     private RollRepository rollRepository;
+    private int stopper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        stopper = 0;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        // Creates the PresetRoll and CustomRoll fragments and sets the starting view to the CustomRoll fragment
+        // Creates the PresetRollFragment so that it can be used on startup
         PresetRollFragment createFragment = PresetRollFragment.getFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, createFragment).commit();
+
+        // Creates and sets the CustomRollFragment to the beginning view
         CustomRollFragment startFragment = CustomRollFragment.getFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, startFragment).commit();
 
-        // instantiates repository
+        // Instantiates repository
         rollRepository = new RollRepository(this);
         retrieveRolls();
-
-    }
-
-    /**
-     * Calls to the preset rolls fragment to update it using the database
-     */
-    private void retrieveRolls() {
-        rollRepository.retrieveRollTask().observe(this, new Observer<List<Roll>>() {
-            @Override
-            public void onChanged(@Nullable List<Roll> rolls) {
-                PresetRollFragment preRollFrag = PresetRollFragment.getFragment();
-                preRollFrag.retrieveRolls(rolls);
-            }
-        });
     }
 
     /**
@@ -68,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
-
             switch(item.getItemId()) {
                 case R.id.nav_custom:
                     selectedFragment = CustomRollFragment.getFragment();
@@ -83,24 +64,12 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = SettingsFragment.getFragment();
                     break;
             }
-
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return true;
         }
     };
 
-    /**
-     * Called when a preset roll is selected from the list of preset rolls.
-     * This method brings the user back to the 'CustomRoll' screen with their preset rolls
-     * information already filled in.
-     * @param numSides is the number of sides on each die in the preset roll
-     * @param numDice is the number of dice rolled in the preset roll
-     */
-    public void presetRollSelection(int numSides, int numDice) {
-        CustomRollFragment instance = CustomRollFragment.getFragment();
-        instance.fromPresets(numSides, numDice);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, CustomRollFragment.getFragment()).commit();
-    }
+    //-----########## AddNewFavoriteFragment METHODS ##########-----
 
     /**
      * Moves from the custom roll fragment to the create new favorite fragment
@@ -113,6 +82,17 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, AddNewFavoriteFragment.getFragment()).commit();
     }
 
+    //-----########## CustomRollFragment METHODS ##########-----
+
+    /**
+     * Returns user back to the custom roll page when the back button is hit
+     */
+    public void cancelNewFavorite() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, CustomRollFragment.getFragment()).commit();
+    }
+
+    //-----########## HistoryFragment METHODS ##########-----
+
     /**
      * Calls into the HistoryFragment for the method of the same name
      * @param result is the result of the last roll
@@ -124,10 +104,18 @@ public class MainActivity extends AppCompatActivity {
         histFrag.addNewHistory(result, sides, dice);
     }
 
+    //-----########## PresetRollFragment METHODS ##########-----
+
     /**
-     * Returns user back to the custom roll page when the back button is hit
+     * Called when a preset roll is selected from the list of preset rolls.
+     * This method brings the user back to the 'CustomRoll' screen with their preset rolls
+     * information already filled in.
+     * @param numSides is the number of sides on each die in the preset roll
+     * @param numDice is the number of dice rolled in the preset roll
      */
-    public void cancelNewFavorite() {
+    public void presetRollSelection(int numSides, int numDice) {
+        CustomRollFragment instance = CustomRollFragment.getFragment();
+        instance.fromPresets(numSides, numDice);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, CustomRollFragment.getFragment()).commit();
     }
 
@@ -144,9 +132,35 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, instance).commit();
     }
 
+    //-----########## DATABASE METHODS ##########-----
+
+    /**
+     * Calls to the preset rolls fragment to update it with rolls from the database
+     */
+    private void retrieveRolls() {
+        rollRepository.retrieveRollTask().observe(this, new Observer<List<Roll>>() {
+            @Override
+            public void onChanged(@Nullable List<Roll> rolls) {
+                if (stopper == 0) {
+                    PresetRollFragment preRollFrag = PresetRollFragment.getFragment();
+                    preRollFrag.retrieveRolls(rolls);
+                    stopper++;
+                }
+            }
+        });
+    }
+
+    /**
+     * Deletes a roll from the database
+     * @param roll is the roll being deleted from the database
+     */
+    public void deleteRoll(Roll roll) {
+        rollRepository.deleteRoll(roll);
+    }
+
     /**
      * Inserts a new roll into the repository
-     * @param roll
+     * @param roll is the roll being inserted into to the repository
      */
     public void insertRollToDatabase(Roll roll) {
         rollRepository.insertRollTask(roll);
