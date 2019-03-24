@@ -5,6 +5,7 @@ package com.app.tabletopdiceroller.Objects;
  * This object is for use in the history list
  */
 public class PastRoll {
+
     private int numberOfDice;
     private int numberOfSides;
     private String displayString;
@@ -14,6 +15,7 @@ public class PastRoll {
      * This is the public constructor for the Roll object
      * @param numberOfDice is the number of dice being rolled
      * @param numberOfSides is the number of sides the dice have
+     * @param result is the result of the dice roll
      */
     public PastRoll(int numberOfDice, int numberOfSides, String result) {
         this.numberOfDice = numberOfDice;

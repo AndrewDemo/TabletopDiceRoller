@@ -7,18 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-
 import com.app.tabletopdiceroller.Adapters.RollRecyclerAdapter;
 import com.app.tabletopdiceroller.Objects.Roll;
-import com.app.tabletopdiceroller.room.RollRepository;
 import com.app.tabletopdiceroller.util.VerticalSpacingItemDecorator;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

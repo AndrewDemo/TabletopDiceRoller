@@ -10,9 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.app.tabletopdiceroller.Objects.Roll;
-import com.app.tabletopdiceroller.room.RollRepository;
 
 /**
  * This fragment is the screen displayed when creating a new favorite roll and adding it to the preset roll list

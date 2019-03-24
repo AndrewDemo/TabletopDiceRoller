@@ -1,12 +1,10 @@
 package com.app.tabletopdiceroller.room;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.persistence.room.Delete;
 import android.content.Context;
 import com.app.tabletopdiceroller.Objects.Roll;
 import com.app.tabletopdiceroller.async.DeleteAsyncTask;
 import com.app.tabletopdiceroller.async.InsertAsyncTask;
-
 import java.util.List;
 
 public class RollRepository {

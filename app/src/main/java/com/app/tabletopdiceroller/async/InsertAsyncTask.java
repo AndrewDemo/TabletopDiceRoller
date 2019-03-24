@@ -1,7 +1,6 @@
 package com.app.tabletopdiceroller.async;
 
 import android.os.AsyncTask;
-
 import com.app.tabletopdiceroller.Objects.Roll;
 import com.app.tabletopdiceroller.room.RollDAO;
 
@@ -17,6 +16,11 @@ public class InsertAsyncTask extends AsyncTask<Roll, Void, Void> {
         rollDao = dao;
     }
 
+    /**
+     * Inserts the passed in list of rolls into the database table
+     * @param rolls is the list of rolls to be inserted
+     * @return null
+     */
     @Override
     protected Void doInBackground(Roll... rolls) {
         rollDao.insertRolls(rolls);

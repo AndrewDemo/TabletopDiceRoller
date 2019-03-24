@@ -6,15 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.app.tabletopdiceroller.HistoryFragment;
 import com.app.tabletopdiceroller.Objects.PastRoll;
-import com.app.tabletopdiceroller.Objects.Roll;
 import com.app.tabletopdiceroller.R;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Serves as the recycler adapter for the history fragment
@@ -24,7 +18,7 @@ public class HistoryRecyclerAdapter extends RecyclerView.Adapter<HistoryRecycler
     // List containing past rolls
     private ArrayList<PastRoll> rolls;
 
-    private OnHistoryListener mOnHistoryListener;
+    private OnHistoryListener onHistoryListener;
 
     /**
      * Public constructor setting ArrayList of past rolls
@@ -32,14 +26,14 @@ public class HistoryRecyclerAdapter extends RecyclerView.Adapter<HistoryRecycler
      */
     public HistoryRecyclerAdapter(ArrayList<PastRoll> rolls, OnHistoryListener onHistoryListener) {
         this.rolls = rolls;
-        this.mOnHistoryListener = onHistoryListener;
+        this.onHistoryListener = onHistoryListener;
     }
 
     @NonNull
     @Override
     public HistoryRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_history_roll_list_item, viewGroup, false);
-        return new ViewHolder(view, mOnHistoryListener);
+        return new ViewHolder(view, onHistoryListener);
     }
 
     @Override

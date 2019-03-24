@@ -6,10 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.app.tabletopdiceroller.Objects.Roll;
 import com.app.tabletopdiceroller.R;
-
 import java.util.ArrayList;
 
 /**
@@ -20,7 +18,7 @@ public class RollRecyclerAdapter extends RecyclerView.Adapter<RollRecyclerAdapte
     // ArrayList representing the preset roll objects in the recycler View
     private ArrayList<Roll> rolls;
 
-    private OnRollListener mOnRollListener;
+    private OnRollListener onRollListener;
 
     /**
      * Public constructor setting ArrayList of rolls
@@ -28,14 +26,14 @@ public class RollRecyclerAdapter extends RecyclerView.Adapter<RollRecyclerAdapte
      */
     public RollRecyclerAdapter(ArrayList<Roll> rolls, OnRollListener onRollListener) {
         this.rolls = rolls;
-        this.mOnRollListener = onRollListener;
+        this.onRollListener = onRollListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_roll_list_item, viewGroup, false);
-        return new ViewHolder(view, mOnRollListener);
+        return new ViewHolder(view, onRollListener);
     }
 
     @Override
