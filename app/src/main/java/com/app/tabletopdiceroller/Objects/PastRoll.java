@@ -17,7 +17,7 @@ public class PastRoll {
      * @param numberOfSides is the number of sides the dice have
      * @param result is the result of the dice roll
      */
-    public PastRoll(int numberOfDice, int numberOfSides, String result) {
+    public PastRoll(int numberOfSides, int numberOfDice, String result) {
         this.numberOfDice = numberOfDice;
         this.numberOfSides = numberOfSides;
         this.result = result;

@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RollRepository rollRepository;
     private int stopper;
+    private BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        // Instantiates bottom navigation and sets up the listener
+        bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         // Creates the PresetRollFragment so that it can be used on startup
@@ -116,6 +118,10 @@ public class MainActivity extends AppCompatActivity {
     public void presetRollSelection(int numSides, int numDice) {
         CustomRollFragment instance = CustomRollFragment.getFragment();
         instance.fromPresets(numSides, numDice);
+
+        // Changes the selected button in the bottom navigation view to the custom roll screen
+        bottomNav.setSelectedItemId(R.id.nav_custom);
+        // Changes the fragment to the custom roll fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, CustomRollFragment.getFragment()).commit();
     }
 
@@ -129,6 +135,10 @@ public class MainActivity extends AppCompatActivity {
     public void confirmNewRoll(int sides, int dice, String rollName) {
         PresetRollFragment instance = PresetRollFragment.getFragment();
         instance.createNewRoll(sides, dice, rollName);
+
+        // Changes the selected button i the bottom navigation view to the preset roll screen
+        bottomNav.setSelectedItemId(R.id.nav_preset);
+        // Changes the fragment to the preset roll fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, instance).commit();
     }
 
