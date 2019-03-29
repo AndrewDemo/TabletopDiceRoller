@@ -18,8 +18,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RollRepository rollRepository;
-    private int stopper;
     private BottomNavigationView bottomNav;
+
+    // Ensures there are no duplicate additions to the database / favorite list
+    private int stopper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Navigates between fragments when bottom navigation buttons are pressed
+     * Allows the user to navigate between fragments via the bottom navigation buttons
      */
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

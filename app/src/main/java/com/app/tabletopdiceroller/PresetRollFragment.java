@@ -19,8 +19,13 @@ import java.util.List;
 
 public class PresetRollFragment extends Fragment implements RollRecyclerAdapter.OnRollListener {
 
+    // Fragment instance defaults to null for singleton pattern
     private static PresetRollFragment fragmentInstance = null;
 
+    /**
+     * Singleton pattern
+     * @return the instance of the fragment if there already is one, otherwise creates a new one and returns it
+     */
     public static PresetRollFragment getFragment() {
         if (fragmentInstance == null) {
             fragmentInstance = new PresetRollFragment();
@@ -49,12 +54,21 @@ public class PresetRollFragment extends Fragment implements RollRecyclerAdapter.
         initRecyclerView();
     }
 
+    /**
+     * Creates a new Roll object and adds it to the rolls list
+     * @param numSides is the number of sides
+     * @param numDice is the number of dice
+     * @param rollName is the display name of the roll
+     */
     public void createNewRoll(int numSides, int numDice, String rollName) {
         Roll roll = new Roll(numDice, numSides, rollName);
         rolls.add(0, roll);
         rollRecyclerAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * Initializes the recycler view
+     */
     private void initRecyclerView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -66,7 +80,7 @@ public class PresetRollFragment extends Fragment implements RollRecyclerAdapter.
     }
 
     /**
-     * Retreives rolls from the database to fill the preset roll list
+     * Retrieves rolls from the database to fill the preset roll list
      * @param rolls is the list of rolls filling the preset rolls recycler view
      */
     public void retrieveRolls(List<Roll> rolls) {
@@ -87,6 +101,7 @@ public class PresetRollFragment extends Fragment implements RollRecyclerAdapter.
     }
 
     /**
+     * Allows the user to delete favorites from the database by swiping to the left or right.
      * dragDirs is set to 0 because list items will not be moved around
      */
     private ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
@@ -95,21 +110,20 @@ public class PresetRollFragment extends Fragment implements RollRecyclerAdapter.
             // Do nothing
             return false;
         }
-
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+            // Delete rolls from the database on left or right swipe
             deleteRoll(rolls.get(viewHolder.getAdapterPosition()));
         }
     };
 
     /**
-     * Determines what happens when a list item is clicked
-     * @param position
+     * When a list item is clicked the information is exported to the Custom Roll Fragment where it will be ready to be used by the user.
+     * @param position is the position of the roll in the recyclerView
      */
     @Override
     public void onItemClick(int position) {
         Roll roll = rolls.get(position);
-        // Chose what pressing a button does here
         ((MainActivity)getActivity()).presetRollSelection(roll.getNumberOfSides(), roll.getNumberOfDice());
     }
 }

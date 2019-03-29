@@ -7,33 +7,40 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import java.util.Random;
 
 /**
- * This is the fragment used when the user is creating or rolling a custom roll
+ * This fragment is responsible for managing user operations in the Custom Roll screen
+ * This class will simulate dice rolls, allow the user to add new favorite rolls, and
+ * allow the user to import information from the Preset Roll Fragment
  */
 public class CustomRollFragment extends Fragment implements View.OnClickListener{
 
+    // Instance of this fragment defaults to null for singleton pattern
     private static CustomRollFragment fragmentInstance = null;
+
+    // Random used for generating the random dice results
     private Random rand = new Random();
+
+    // Responsible for tracking sides and dice values
     private int sides = -1;
     private int dice = -1;
-    private int result = -1;
-    private String sidesString, diceString;
-    private Button resetBtn;
-    private Button rollBtn;
-    private Button favBtn;
-    private EditText numSides;
-    private EditText numDice;
     private static int s = -1;
     private static int d = -1;
+
+    // Creates class variables to represent the number of dice, number of sides, and result text fields
+    private EditText numSidesEditText;
+    private EditText numDiceEditText;
     private TextView resultText;
 
     // Variable keeping track of last rolls result for the history fragment
     int lastResult;
+
+    // Responsible for tracking the values passed in from the preset rolls fragment
+    private String presetNumSides;
+    private String presetNumDice;
 
 
     /**
@@ -51,21 +58,20 @@ public class CustomRollFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_custom_roll, container, false);
+
         // Gets buttons and connects them to an OnClickListener
-        rollBtn = view.findViewById(R.id.roll_button);
-        rollBtn.setOnClickListener(this);
-        resetBtn = view.findViewById(R.id.reset_button);
-        resetBtn.setOnClickListener(this);
-        favBtn = view.findViewById(R.id.favorite_button);
-        favBtn.setOnClickListener(this);
+        view.findViewById(R.id.roll_button).setOnClickListener(this);
+        view.findViewById(R.id.reset_button).setOnClickListener(this);
+        view.findViewById(R.id.favorite_button).setOnClickListener(this);
+
         // Gets the EditText and TextView boxes
-        numSides = view.findViewById(R.id.num_sides_edittext);
-        numDice = view.findViewById(R.id.num_dice_edittext);
+        numSidesEditText = view.findViewById(R.id.num_sides_edittext);
+        numDiceEditText = view.findViewById(R.id.num_dice_edittext);
         resultText = view.findViewById(R.id.result_textview);
 
         if (s >= 0 && d >= 0) {
-            numSides.setText(Integer.toString(s));
-            numDice.setText(Integer.toString(d));
+            numSidesEditText.setText(Integer.toString(s));
+            numDiceEditText.setText(Integer.toString(d));
         }
 
         return view;
@@ -93,13 +99,15 @@ public class CustomRollFragment extends Fragment implements View.OnClickListener
      * Clears focus from both editText boxes and passes the numbers from the EditText boxes to the rollDice() method
      */
     private void rollDice() {
-        numSides.clearFocus();
-        numDice.clearFocus();
+        numSidesEditText.clearFocus();
+        numDiceEditText.clearFocus();
+        int result;
         try {
-            sides = Integer.parseInt(numSides.getText().toString());
-            dice = Integer.parseInt(numDice.getText().toString());
+            sides = Integer.parseInt(numSidesEditText.getText().toString());
+            dice = Integer.parseInt(numDiceEditText.getText().toString());
             result = rollDice(dice, sides);
             lastResult = result;
+            // Alters the display size of the result text for large numbers to prevent it from going off of the screen
             if (result > 99999) {
                 resultText.setTextSize(85);
             } else {
@@ -130,12 +138,10 @@ public class CustomRollFragment extends Fragment implements View.OnClickListener
      * When the favorite button is selected gathers the information from the editTexts and passes it into a Main Activity method
      */
     private void addNewFavorite() {
-        numSides.clearFocus();
-        numDice.clearFocus();
+        numSidesEditText.clearFocus();
+        numDiceEditText.clearFocus();
         try {
-            sidesString = numSides.getText().toString();
-            diceString = numDice.getText().toString();
-            ((MainActivity) getActivity()).addNewFavorite(sidesString, diceString);
+            ((MainActivity) getActivity()).addNewFavorite(numSidesEditText.getText().toString(), numDiceEditText.getText().toString());
             } catch (Exception e) {
             // Catches exceptions with user input
         }
@@ -147,6 +153,10 @@ public class CustomRollFragment extends Fragment implements View.OnClickListener
      * @param numDice is the number of dice of the preset roll
      */
     public void fromPresets(int numSides, int numDice) {
+        presetNumDice = Integer.toString(numDice);
+        presetNumSides = Integer.toString(numSides);
+        numSidesEditText.setText(Integer.toString(numSides));
+        numDiceEditText.setText(Integer.toString(numDice));
         s = numSides;
         d = numDice;
     }
@@ -172,19 +182,40 @@ public class CustomRollFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.favorite_button:
+                //Moves to the add new favorite screen
                 addNewFavorite();
                 break;
             case R.id.reset_button:
-                clearEditText(numSides);
-                clearEditText(numDice);
+                // Resets all text views
+                clearEditText(numSidesEditText);
+                clearEditText(numDiceEditText);
                 clearTextView(resultText);
                 break;
             case R.id.roll_button:
+                // Simulates a dice roll
                 rollDice();
                 addNewHistoryItem();
                 break;
         }
     }
+
+    /**
+     * Ensures the proper values for the number of dice and number of sides edit text fields are displayed when returning to the fragment
+     */
+    @Override
+    public void onResume() {
+        // If presetNumSides and presetNumDice are not null then replace the current values with these
+        if (presetNumSides != null && presetNumDice != null) {
+            numDiceEditText.setText(presetNumDice);
+            numSidesEditText.setText(presetNumSides);
+            // Once the values have been replaced reset the values to null
+            presetNumDice = null;
+            presetNumSides = null;
+        }
+        super.onResume();
+
+    }
+
 }
 
 
