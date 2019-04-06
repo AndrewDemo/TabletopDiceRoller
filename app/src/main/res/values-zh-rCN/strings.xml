@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tabletop Dice Roller</string>
+    <string name="emptyEditText">#</string>
+    <string name="numSides">輸入邊數：</string>
+    <string name="numDice">輸入骰子數量：</string>
+    <string name="rollButton">滾</string>
+    <string name="favoriteButton">喜愛</string>
+    <string name="resetButton">重啟</string>
+    <string name="botNavCustom">定製卷</string>
+    <string name="favCreateButton">創建</string>
+    <string name="favBackButton">背部</string>
+    <string name="favTextViewNumSides">每個骰子的邊數：</string>
+    <string name="favTextViewNumDice">骰子數量：</string>
+    <string name="favTextViewPleaseName">為此卷命名，然後按“創建”：</string>
+    <string name="botNavFav">最喜歡的捲</string>
+    <string name="botNavHistory">歷史</string>
+    <string name="botNavSettings">設置</string>
+</resources>

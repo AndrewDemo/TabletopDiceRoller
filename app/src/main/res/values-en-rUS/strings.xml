@@ -1,7 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Tabletop Dice Roller</string>
-
-    <!--Resources for the Custom Roll Fragment-->
     <string name="numSides">Enter number of sides:</string>
     <string name="numDice">Enter number of dice:</string>
     <string name="emptyEditText">#</string>
@@ -9,22 +8,12 @@
     <string name="favoriteButton">Favorite</string>
     <string name="resetButton">Reset</string>
     <string name="botNavCustom">Custom Roll</string>
-
-
-    <!--Resources for AddNewFavorite Fragment-->
     <string name="favCreateButton">Create</string>
     <string name="favBackButton">Back</string>
     <string name="favTextViewNumSides">Number of sides per dice:</string>
     <string name="favTextViewNumDice">Number of dice:</string>
     <string name="favTextViewPleaseName">Give a name to this roll, then press \'Create\':</string>
-
-    <!--Resources for PresetRoll Fragment-->
     <string name="botNavFav">Favorite Rolls</string>
-
-    <!--Resources for History Fragment -->
     <string name="botNavHistory">History</string>
-
-    <!--Resources for Settings Fragment-->
     <string name="botNavSettings">Settings</string>
-
 </resources>

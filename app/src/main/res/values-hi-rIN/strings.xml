@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tabletop Dice Roller</string>
+    <string name="numSides">पक्षों की संख्या दर्ज करें:</string>
+    <string name="numDice">पासा की संख्या दर्ज करें:</string>
+    <string name="emptyEditText">#</string>
+    <string name="rollButton">रोल</string>
+    <string name="favoriteButton">पसंदीदा</string>
+    <string name="resetButton">रीसेट</string>
+    <string name="botNavCustom">कस्टम रोल</string>
+    <string name="favCreateButton">सर्जन करना</string>
+    <string name="favBackButton">वापस</string>
+    <string name="favTextViewNumSides">प्रति पासा पक्षों की संख्या:</string>
+    <string name="favTextViewNumDice">पासा की संख्या:</string>
+    <string name="favTextViewPleaseName">इस रोल को एक नाम दें, फिर \'क्रिएट\' दबाएँ:</string>
+    <string name="botNavFav">पसंदीदा रोल</string>
+    <string name="botNavHistory">इतिहास</string>
+    <string name="botNavSettings">सेटिंग्स</string>
+</resources>

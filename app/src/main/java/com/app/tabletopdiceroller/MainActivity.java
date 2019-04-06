@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         // Instantiates repository
         rollRepository = new RollRepository(this);
         retrieveRolls();
+
+        setTheme(0);
     }
 
     /**

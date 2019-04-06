@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">卓上ダイスローラー</string>
+    <string name="botNavSettings">設定</string>
+    <string name="botNavHistory">歴史</string>
+    <string name="botNavFav">好きなロール</string>
+    <string name="favTextViewPleaseName">このロールに名前を付けて、 \'Create\'を押してください。</string>
+    <string name="favTextViewNumDice">サイコロの数：</string>
+    <string name="favTextViewNumSides">サイコロあたりの面の数：</string>
+    <string name="favBackButton">バック</string>
+    <string name="favCreateButton">作成する</string>
+    <string name="botNavCustom">カスタムロール</string>
+    <string name="resetButton">リセット</string>
+    <string name="favoriteButton">好きな</string>
+    <string name="rollButton">ロール</string>
+    <string name="emptyEditText">#</string>
+    <string name="numDice">サイコロの数を入力してください：</string>
+    <string name="numSides">辺の数を入力してください：</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tabletop Dice Roller</string>
+    <string name="numSides">أدخل عدد الجوانب:</string>
+    <string name="numDice">أدخل عدد الزهر:</string>
+    <string name="emptyEditText">#</string>
+    <string name="rollButton">تدحرج</string>
+    <string name="favoriteButton">مفضل</string>
+    <string name="resetButton">إعادة تعيين</string>
+    <string name="botNavCustom">لفة مخصصة</string>
+    <string name="favCreateButton">خلق</string>
+    <string name="favBackButton">الى الخلف</string>
+    <string name="favTextViewNumSides">عدد الجانبين في النرد:</string>
+    <string name="favTextViewNumDice">عدد النرد:</string>
+    <string name="favTextViewPleaseName">حدد اسمًا لهذه القائمة ، ثم اضغط على \"إنشاء\":</string>
+    <string name="botNavFav">لفات المفضلة</string>
+    <string name="botNavHistory">التاريخ</string>
+    <string name="botNavSettings">الإعدادات</string>
+</resources>

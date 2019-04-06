@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Настольный кубик</string>
+    <string name="numSides">Введите количество сторон:</string>
+    <string name="numDice">Введите количество кубиков:</string>
+    <string name="emptyEditText">#</string>
+    <string name="rollButton">РУЛОН</string>
+    <string name="favoriteButton">любимец</string>
+    <string name="resetButton">Сброс</string>
+    <string name="botNavCustom">Пользовательский рулон</string>
+    <string name="favCreateButton">Создайте</string>
+    <string name="favBackButton">назад</string>
+    <string name="favTextViewNumSides">Количество сторон на кости:</string>
+    <string name="favTextViewNumDice">Количество кубиков:</string>
+    <string name="favTextViewPleaseName">Дайте имя этому броску, затем нажмите «Создать»:</string>
+    <string name="botNavFav">Любимые роллы</string>
+    <string name="botNavHistory">история</string>
+    <string name="botNavSettings">настройки</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tabletop Dice Roller</string>
+    <string name="botNavSettings">Ajustes</string>
+    <string name="botNavHistory">Historia</string>
+    <string name="botNavFav">Rollos Favoritos</string>
+    <string name="favTextViewPleaseName">Asigne un nombre a este rollo, luego presione \'Crear\':</string>
+    <string name="favTextViewNumDice">Número de dados:</string>
+    <string name="favTextViewNumSides">Número de lados por dado:</string>
+    <string name="favBackButton">cancelar</string>
+    <string name="favCreateButton">crear</string>
+    <string name="botNavCustom">rollo personalizado</string>
+    <string name="resetButton">Reiniciar</string>
+    <string name="favoriteButton">favorito</string>
+    <string name="rollButton">rodar</string>
+    <string name="emptyEditText">#</string>
+    <string name="numDice">Introduzca el número de dados:</string>
+    <string name="numSides">Ingrese el número de lados:</string>
+</resources>
