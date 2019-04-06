@@ -29,7 +29,9 @@
         android:layout_marginEnd="124dp"
         android:layout_marginRight="124dp"
         android:layout_marginBottom="24dp"
-        android:text="@string/favoriteButton" />
+        android:text="@string/favoriteButton"
+        android:contentDescription="Navigate to the Add to favorites screen"
+        />
 
     <Button
         android:id="@+id/reset_button"
@@ -45,7 +47,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="24dp"
-        android:text="@string/resetButton" />
+        android:text="@string/resetButton"
+        android:contentDescription="Reset roll information"
+        />
 
     <Button
         android:id="@+id/roll_button"
@@ -61,7 +65,9 @@
         android:layout_marginEnd="244dp"
         android:layout_marginRight="244dp"
         android:layout_marginBottom="24dp"
-        android:text="@string/rollButton" />
+        android:text="@string/rollButton"
+        android:contentDescription="Simulate a dice roll a display the results of the roll"
+        />
 
     <ImageView
         android:id="@+id/num_sides_image"
@@ -128,7 +134,9 @@
         android:layout_marginRight="36dp"
         android:layout_marginBottom="264dp"
         android:ems="10"
-        android:hint="@string/emptyEditText" />
+        android:hint="@string/emptyEditText"
+        android:contentDescription="Enter the number of sides here"
+        />
 
     <EditText
         android:cursorVisible="true"
@@ -147,7 +155,9 @@
         android:layout_marginBottom="155dp"
         android:ems="10"
         android:hint="@string/emptyEditText"
-        android:typeface="monospace" />
+        android:typeface="monospace"
+        android:contentDescription="Enter the number of dice here"
+        />
 
     <TextView
         android:id="@+id/result_textview"
@@ -163,6 +173,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="374dp" />
+        android:layout_marginBottom="374dp"
+        android:contentDescription="This will read the result of the roll once a roll has been made"/>
 
 </RelativeLayout>

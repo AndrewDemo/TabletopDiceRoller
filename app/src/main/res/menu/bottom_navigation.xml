@@ -4,22 +4,27 @@
     <item
         android:id="@+id/nav_custom"
         android:icon="@drawable/ic_custom"
-        android:title="@string/botNavCustom" />
+        android:title="@string/botNavCustom"
+        android:contentDescription="Navigate to the Custom Roll screen"
+        />
 
     <item
         android:id="@+id/nav_preset"
         android:icon="@drawable/ic_preset"
         android:title="@string/botNavFav"
+        android:contentDescription="Navigate to the Favorite Roll screen"
         />
 
     <item
         android:id="@+id/nav_history"
         android:icon="@drawable/ic_history"
-        android:title="@string/botNavHistory" />
+        android:title="@string/botNavHistory"
+        android:contentDescription="Navigate to the History screen"
+        />
 
-    <item
-        android:id="@+id/nav_settings"
-        android:icon="@drawable/ic_settings"
-        android:title="@string/botNavSettings" />
+    <!--<item-->
+        <!--android:id="@+id/nav_settings"-->
+        <!--android:icon="@drawable/ic_settings"-->
+        <!--android:title="@string/botNavSettings" />-->
 
 </menu>

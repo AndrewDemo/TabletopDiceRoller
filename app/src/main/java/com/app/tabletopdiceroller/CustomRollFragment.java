@@ -114,6 +114,11 @@ public class CustomRollFragment extends Fragment implements View.OnClickListener
                 resultText.setTextSize(100);
             }
             resultText.setText(result + "");
+
+            // Updates the result content description for talkback users
+            CharSequence cs = Integer.toString(result);
+            resultText.setContentDescription(cs);
+
         } catch (Exception e) {
             // Catches the event where user enters non-numbers into input
         }

@@ -25,7 +25,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginBottom="24dp"
-        android:text="@string/favCreateButton" />
+        android:text="@string/favCreateButton"
+        android:contentDescription="Add this roll to your favorites"/>
 
     <Button
         android:id="@+id/back_button"
@@ -37,7 +38,8 @@
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="24dp"
-        android:text="@string/favBackButton" />
+        android:text="@string/favBackButton"
+        android:contentDescription="Return to the Custom Roll screen"/>
 
     <TextView
         android:id="@+id/favTextViewNumSides"
@@ -127,6 +129,7 @@
         android:hint="Enter the name of your roll here."
         android:maxLength="17"
         android:selectAllOnFocus="true"
+        android:contentDescription="Enter the name of your roll here"
         />
 
 </RelativeLayout>

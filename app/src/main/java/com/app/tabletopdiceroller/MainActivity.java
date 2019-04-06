@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+
 import com.app.tabletopdiceroller.Objects.Roll;
 import com.app.tabletopdiceroller.room.RollRepository;
 import java.util.List;
@@ -66,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_history:
                     selectedFragment = HistoryFragment.getFragment();
                     break;
-                case R.id.nav_settings:
-                    selectedFragment = SettingsFragment.getFragment();
-                    break;
+//                case R.id.nav_settings:
+//                    selectedFragment = SettingsFragment.getFragment();
+//                    break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return true;
