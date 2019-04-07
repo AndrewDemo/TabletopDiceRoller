@@ -4,6 +4,8 @@ Tabletop Dice Roller is an Android application that allows users to simulate dic
 
 This app was released to the Google Play Store on 4/6/2019
 
+It can be found at https://play.google.com/store/apps/details?id=com.app.tabletopdiceroller
+
 This application was developed in Android Studio using the Java programming language.
 
 Icons/Images used are provided by 
